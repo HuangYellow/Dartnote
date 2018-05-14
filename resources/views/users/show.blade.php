@@ -90,6 +90,7 @@
                                             @csrf
                                             @method('DELETE')
                                         </form>
+                                        <a href="{{ route('posts.show', $post->id) }}">全頁閱讀</a>
                                     </div>
                                 </div>
                             </div>
