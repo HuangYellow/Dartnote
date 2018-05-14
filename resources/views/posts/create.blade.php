@@ -77,6 +77,8 @@
                             console.log(error);
                         });
                 }
+            } else {
+                $("#preview").html('').addClass("hidden");
             }
         }).on('paste', function(e) {
             var data = e.originalEvent.clipboardData.getData('Text');
