@@ -13,7 +13,7 @@
                 <a href="{{ route('posts.show', $post->id) }}"
                    class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ $post->description }}</h5>
+                        <h5 class="mb-1">{{ $post->content }}</h5>
                         <small>{{ $post->created_at->diffForHumans() }}</small>
                     </div>
                 </a>

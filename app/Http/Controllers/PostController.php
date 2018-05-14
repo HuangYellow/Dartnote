@@ -21,9 +21,23 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        auth()->user()->posts()->create($request->all());
+        $attributes = $request->all();
 
-        return redirect()->route('posts.index');
+        $post = auth()->user()->posts()->create($attributes);
+
+        $matches = [];
+        if (! empty($attributes['content'])) {
+            preg_match_all("/(#\w+)/u", $attributes['content'], $matches);
+        }
+
+        if (! empty($matches)) {
+            $hashtagsArray = array_count_values($matches[0]);
+            $hashtags = array_keys($hashtagsArray);
+            $tags = preg_replace('/#([\w-]+)/u', '$1', $hashtags);
+            $post->slugify()->tag($tags);
+        }
+
+        return redirect()->route('users.show', auth()->id());
     }
 
     public function edit(Post $post)

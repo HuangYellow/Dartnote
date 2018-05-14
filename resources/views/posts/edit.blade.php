@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@inject('PostPresenter', '\App\Presenters\PostPresenter')
 
 @section('content')
     <div class="container">
@@ -13,14 +14,14 @@
                             @method('PUT')
 
                             <div class="form-group row">
-                                <label for="description" class="col-sm-4 col-form-label text-md-right">Description</label>
+                                <label for="content" class="col-sm-4 col-form-label text-md-right">Content</label>
 
                                 <div class="col-md-6">
-                                    <input id="description" type="text" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ old('description', $post->description) }}" required autofocus>
+                                    <textarea class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="content" id="content" cols="30" rows="10" autofocus>{!! old('content', e($post->content)) !!}</textarea>
 
-                                    @if ($errors->has('description'))
+                                    @if ($errors->has('content'))
                                         <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('description') }}</strong>
+                                        <strong>{{ $errors->first('content') }}</strong>
                                     </span>
                                     @endif
                                 </div>

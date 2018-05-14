@@ -7,6 +7,7 @@
         }
     </style>
 @endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -15,25 +16,29 @@
                     <div class="card-header">Create Post</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('posts.store') }}">
+                        <form id="create-form" method="POST" action="{{ route('posts.store') }}">
                             @csrf
 
                             <div class="form-group row">
-                                <label for="description" class="col-sm-4 col-form-label text-md-right">Description</label>
+                                <label for="content" class="col-sm-4 col-form-label text-md-right">Content</label>
 
                                 <div class="col-md-6">
-                                    <textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="description" cols="30" rows="10" autofocus>{{ old('description') }}</textarea>
+                                    <textarea class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="content" id="content" cols="30" rows="10" autofocus>{{ old('content') }}</textarea>
 
-                                    @if ($errors->has('description'))
+                                    @if ($errors->has('content'))
                                         <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('description') }}</strong>
+                                        <strong>{{ $errors->first('content') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
 
-                            <div id="preview" class="form-group row hidden">
-                            </div>
+                            <div id="preview" class="form-group row hidden"></div>
+
+                            <input type="hidden" id="url" name="options[url]">
+                            <input type="hidden" id="title" name="options[title]">
+                            <input type="hidden" id="description" name="options[description]">
+                            <input type="hidden" id="image" name="options[image]">
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
@@ -52,7 +57,7 @@
 
 @section('script')
     <script>
-        $("#description").keyup(function (e) {
+        $("#content").keyup(function (e) {
             let val = $(this).val();
             if (val.match(/^http([s]?):\/\/.*/)) {
                 if (e.which == 13) {
@@ -72,6 +77,11 @@
                                     </div>
                                 </div>
                             </div>`).removeClass("hidden");
+
+                        $("#url").val(response.data.url);
+                        $("#title").val(response.data.title);
+                        $("#description").val(response.data.description);
+                        $("#image").val(response.data.image);
                     })
                         .catch(function (error) {
                             console.log(error);
@@ -79,6 +89,7 @@
                 }
             } else {
                 $("#preview").html('').addClass("hidden");
+                $("#options").val('');
             }
         }).on('paste', function(e) {
             var data = e.originalEvent.clipboardData.getData('Text');
@@ -100,6 +111,11 @@
                                     </div>
                                 </div>
                             </div>`).removeClass("hidden");
+
+                    $("#url").val(response.data.url);
+                    $("#title").val(response.data.title);
+                    $("#description").val(response.data.description);
+                    $("#image").val(response.data.image);
                 })
                 .catch(function (error) {
                     console.log(error);
