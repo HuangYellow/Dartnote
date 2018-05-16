@@ -74,6 +74,48 @@
         </main>
     </div>
 
+    <!--content script-->
+    <script>
+        $("#content").keyup(function () {
+            let val = $(this).val();
+            if (!val.length) {
+                $("#preview").html('').addClass("hidden");
+            }
+        })
+            .on('paste', function (e) {
+                var data = e.originalEvent.clipboardData.getData('Text');
+                var url = data.match(/\b(http([s]?)):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/ig);
+                if (url) {
+                    axios.post('/api/embed', {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        url: url[0]
+                    })
+                        .then(function (response) {
+                            $("#preview").html(`
+                        <label class="col-sm-4 col-form-label text-md-right">preview</label>
+                            <div class="col-md-6">
+                                <div class="card" style="width: 18rem;">
+                                    <img id="preview_image" class="card-img-top" src="${response.data.image}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p id="preview_body" class="card-text">${response.data.title}</p>
+                                    </div>
+                                </div>
+                            </div>`).removeClass("hidden");
+
+                            $("#url").val(response.data.url);
+                            $("#title").val(response.data.title);
+                            $("#description").val(response.data.description);
+                            $("#image").val(response.data.image);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            });
+    </script>
+
     @yield('script')
 </body>
 </html>

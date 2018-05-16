@@ -13,7 +13,6 @@ class Embed extends Controller
     public function __invoke(EmbedRequest $request)
     {
         $parsed = EmbedProvide::create($request->get('url'));
-
         return response()->json([
                 'title' => $parsed->title,
                 'description' => $parsed->description,

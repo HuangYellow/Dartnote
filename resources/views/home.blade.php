@@ -6,7 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -17,6 +16,9 @@
                     You are logged in!
                 </div>
             </div>
+
+            @include('posts._partials.create-form')
+
         </div>
     </div>
 </div>

@@ -7,6 +7,11 @@ use App\Post;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('store');
+    }
+
     public function index()
     {
         $posts = Post::latest()->paginate(12);
@@ -24,6 +29,7 @@ class PostController extends Controller
         $attributes = $request->all();
 
         $post = auth()->user()->posts()->create($attributes);
+        auth()->user()->increment('experience', config('exp.post.create'));
 
         $matches = [];
         if (! empty($attributes['content'])) {
@@ -60,6 +66,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+        auth()->user()->increment('experience', config('exp.post.destroy'));
 
         return redirect()->route('posts.index');
     }
