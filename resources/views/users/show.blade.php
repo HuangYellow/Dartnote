@@ -17,9 +17,6 @@
                 </div>
             </div>
 
-            <div class="col-md-12" style="padding-bottom: 10px;">
-                @include('posts._partials.create-form')
-            </div>
             <div class="col-md-12">
                 <div class="infinite-scroll list-group">
                     @foreach($posts as $post)
@@ -35,7 +32,7 @@
                                     </div>
                                 </div>
 
-                                @if (! empty($post->options))
+                                @if (! empty($post->options['url']))
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label text-md-right">preview</label>
                                         <div class="col-md-6">
