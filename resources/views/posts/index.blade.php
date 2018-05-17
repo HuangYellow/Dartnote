@@ -8,7 +8,7 @@
             </div>
         </div>
 
-        <div class="list-group">
+        <div class="infinite-scroll list-group">
             @foreach($posts as $post)
                 <a href="{{ route('posts.show', $post->id) }}"
                    class="list-group-item list-group-item-action flex-column align-items-start">
@@ -18,12 +18,27 @@
                     </div>
                 </a>
             @endforeach
-        </div>
 
-        <div class="mt-2">
-            <nav aria-label="Page navigation example">
-                {{ $posts->links() }}
-            </nav>
+            {{ $posts->links() }}
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+    <script>
+        $('ul.pagination').hide();
+        $(function() {
+            $('.infinite-scroll').jscroll({
+                autoTrigger: true,
+                loadingHtml: '<h1>Loading</h1>',
+                padding: 0,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.infinite-scroll',
+                callback: function() {
+                    $('ul.pagination').remove();
+                }
+            });
+        });
+    </script>
 @endsection
