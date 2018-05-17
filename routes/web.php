@@ -11,20 +11,17 @@
 |
 */
 
-Route::group([
-    'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-], function() {
-    Route::get('/', function () {
-        if (auth()->check()) {
-            return redirect()->to('home');
-        }
-        return view('welcome');
-    });
+Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->to('home');
+    }
 
-    Auth::routes();
-
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('users/{user}', 'UserController@show')->name('users.show');
-    Route::resource('posts', 'PostController');
+    return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('posts', 'PostController');
+
+Route::get('{user}', 'UserController@show')->name('users.show');

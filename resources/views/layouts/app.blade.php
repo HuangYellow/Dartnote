@@ -52,7 +52,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('users.show', auth()->id()) }}">
+                                    <a class="dropdown-item" href="{{ route('users.show', auth()->user()->nickname) }}">
                                         {{ __('Profile') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
