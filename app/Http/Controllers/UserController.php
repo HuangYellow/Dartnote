@@ -14,4 +14,11 @@ class UserController extends Controller
 
         return view('users.show', compact('user', 'posts'));
     }
+
+    public function followers(User $user)
+    {
+        $followers = $user->followers()->paginate(12);
+
+        return view('users.followers', compact('followers'));
+    }
 }
