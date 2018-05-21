@@ -5,6 +5,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="form-group row">
+                <button id="follow" data-id="{{ $user->id }}" {{ $user->id == auth()->id() ? 'disabled': '' }}>follow</button>
+
                 <label class="col-sm-4 col-form-label text-md-right">achievements</label>
                 <div class="col-md-6">
                     <ol>
@@ -86,6 +88,26 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
     <script>
+        $("#follow").on('click', function(e) {
+            let id = $(this).data('id');
+            axios.post('/api/follow', {
+                id: id
+            })
+                .then(function (response) {
+                    let status = response.data.status;
+                    if (status === 'follow') {
+                        $("#follow").html('unfollow');
+                    }
+
+                    if (status === 'unfollow') {
+                        $("#follow").html('follow');
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+
         $('ul.pagination').hide();
         $(function() {
             $('.infinite-scroll').jscroll({

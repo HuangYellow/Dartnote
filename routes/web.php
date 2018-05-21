@@ -25,3 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('posts', 'PostController');
 
 Route::get('{user}', 'UserController@show')->name('users.show');
+
+Route::post('api/follow', 'Api\Follow');
