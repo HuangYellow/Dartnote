@@ -5,7 +5,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="form-group row">
-                <button id="follow" data-id="{{ $user->id }}" {{ $user->id == auth()->id() ? 'disabled': '' }}>follow</button>
+                <button id="follow" data-id="{{ $user->id }}" {{ $user->id == auth()->id() ? 'disabled': '' }}>
+                    {{ auth()->user()->isFollowing($user->id) ? 'unfollow' : 'follow' }}
+                </button>
 
                 <label class="col-sm-4 col-form-label text-md-right">achievements</label>
                 <div class="col-md-6">
