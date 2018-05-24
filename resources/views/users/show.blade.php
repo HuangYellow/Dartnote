@@ -87,7 +87,7 @@
     </div>
 @endsection
 
-@section('script')
+@push('push_scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
     <script>
         $("#follow").on('click', function(e) {
@@ -124,4 +124,4 @@
             });
         });
     </script>
-@endsection
+@endpush
