@@ -47,7 +47,8 @@
                     })
                         .then(function (response) {
                             $(".preview_image").attr('src', response.data.image);
-                            $(".preview_body").text(response.data.title);
+                            $(".preview_title").text(response.data.title);
+                            $(".preview_description").text(response.data.description);
                             $(".preview").removeClass("hidden");
 
                             $("input[name='options[url]']").val(response.data.url);
