@@ -15,6 +15,18 @@ class UserController extends Controller
         return view('users.show', compact('user', 'posts'));
     }
 
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $user->update($request->all());
+
+        return redirect()->route('users.show', $user->nickname);
+    }
+
     public function followers(User $user)
     {
         $followers = $user->followers()->paginate(12);

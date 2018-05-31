@@ -1,5 +1,6 @@
 {
   "Profile": "個人資料",
+  "Edit Profile": "編輯個人資料",
   "Logout": "登出",
   "E-Mail Address": "電子信箱",
   "Password": "密碼",
@@ -14,5 +15,6 @@
   "Confirm Password": "確認密碼",
   "Unfollow": "取消跟隨",
   "Follow": "跟隨",
-  "Read more": "繼續閱讀"
+  "Read more": "繼續閱讀",
+  "Achievements": "成就"
 }
