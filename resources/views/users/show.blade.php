@@ -15,7 +15,11 @@
                 <div class="row mt-3">
                     <div class="mx-auto">
                         <button id="follow" data-id="{{ $user->id }}" type="button" class="btn btn-{{ auth()->user()->isFollowing($user->id) ? 'outline-primary' : 'primary' }}" {{ $user->id == auth()->id() ? 'disabled': '' }}>
-                            {{ auth()->user()->isFollowing($user->id) ? 'unfollow': 'follow' }}
+                            @if (auth()->user()->isFollowing($user->id))
+                                @lang("Unfollow")
+                            @else
+                                @lang("Follow")
+                            @endif
                         </button>
                     </div>
                 </div>
@@ -52,13 +56,13 @@
                     let status = response.data.status;
                     if (status === 'follow') {
                         let follow = $("#follow");
-                        follow.removeClass('btn-primary').addClass('btn-outline-primary').html('unfollow');
+                        follow.removeClass('btn-primary').addClass('btn-outline-primary').html("{{ __('Unfollow') }}");
 
                     }
 
                     if (status === 'unfollow') {
                         let unfollow = $("#follow");
-                        unfollow.removeClass('btn-outline-primary').addClass('btn-primary').html('follow');
+                        unfollow.removeClass('btn-outline-primary').addClass('btn-primary').html("{{ __('Follow') }}");
                     }
                 })
                 .catch(function (error) {

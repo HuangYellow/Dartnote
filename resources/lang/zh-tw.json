@@ -11,5 +11,7 @@
   "Create New Post": "撰寫新推文",
   "Name": "名稱",
   "Nick Name": "暱稱",
-  "Confirm Password": "確認密碼"
+  "Confirm Password": "確認密碼",
+  "Unfollow": "取消跟隨",
+  "Follow": "跟隨"
 }
