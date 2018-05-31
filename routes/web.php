@@ -24,6 +24,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('posts', 'PostController');
 
+Route::view('{user}/achievements', 'users.achievements', compact('user'));
 Route::get('{user}/followers', 'UserController@followers')->name('users.followers');
 Route::get('{user}', 'UserController@show')->name('users.show');
 
