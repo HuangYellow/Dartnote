@@ -29,10 +29,6 @@
                 <div class="col-md-6">
                     <div class="infinite-scroll list-group">
                         @foreach($posts as $post)
-                            @push('readmore')
-                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary float-right mt-3">Read more...</a>
-                            @endpush
-
                             @include('posts._partials.card')
                         @endforeach
 

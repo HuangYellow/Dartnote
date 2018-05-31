@@ -38,6 +38,8 @@
             </div>
         @endif
 
-        @stack('readmore')
+        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary float-right mt-3">
+            @lang("Read more")
+        </a>
     </div>
 </div>
