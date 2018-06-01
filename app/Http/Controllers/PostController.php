@@ -43,7 +43,7 @@ class PostController extends Controller
             $post->slugify()->tag($tags);
         }
 
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->back()->with('message', 'Successful.');
     }
 
     public function edit(Post $post)

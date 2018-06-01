@@ -7,7 +7,7 @@
                      data-holder-rendered="true">
             </label>
 
-            <div class="col-md-11">
+            <div class="col-md-11 mt-2">
                 <span class="align-middle">
                     <a href="{{ route('users.show', $post->user->nickname) }}">{{ $post->user->nickname }}</a>
                      ． {{ $post->created_at->diffForHumans() }}
@@ -46,6 +46,11 @@
                 </div>
             </div>
         @endif
+
+        <span class="float-left offset-1 mt-4">
+            50 likes,
+            50 comments
+        </span>
 
         <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary float-right mt-3">
             @lang("Read more")
