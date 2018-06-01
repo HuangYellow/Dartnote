@@ -60,12 +60,6 @@
                             </a>
                         </li>
                     @else
-                        <li>
-                            <a class="btn btn-primary text-white" data-toggle="modal" data-target="#exampleModal">
-                                @lang('Create Post')
-                            </a>
-                        </li>
-
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -91,25 +85,6 @@
                                 </form>
                             </div>
                         </li>
-
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">
-                                            @lang('Create New Post')
-                                        </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        @include('posts._partials.create-modal')
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     @endguest
                 </ul>
             </div>
