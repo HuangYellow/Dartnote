@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@inject('PostPresenter', '\App\Presenters\PostPresenter')
 
 @section('style')
     <style>
@@ -14,7 +15,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                         <form id="create-form" method="POST" action="{{ route('posts.store') }}">
@@ -66,10 +67,23 @@
             </div>
         </div>
     </div>
+
+    <div class="row mt-3 justify-content-center">
+        <div class="col-md-6">
+            <div class="infinite-scroll list-group">
+                @foreach($posts as $post)
+                    @include('posts._partials.card')
+                @endforeach
+
+                {{ $posts->links() }}
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 
 @push('push_scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
     <script>
         Vue.component('resizable-textarea', {
             methods: {
@@ -137,5 +151,20 @@
                         });
                 }
             });
+
+        $('ul.pagination').hide();
+
+        $(function() {
+            $('.infinite-scroll').jscroll({
+                autoTrigger: true,
+                loadingHtml: '<h1>Loading</h1>',
+                padding: 0,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.infinite-scroll',
+                callback: function() {
+                    $('ul.pagination').remove();
+                }
+            });
+        });
     </script>
 @endpush
