@@ -2,11 +2,9 @@
     @csrf
 
     <div class="form-group">
-        <resizable-textarea>
-            <textarea v-model="content" class="content form-control{{ $errors->has('content') ? ' is-invalid' : '' }}"
-                  name="content" cols="30" rows="10"
-                  autofocus>{{ old('content') }}</textarea>
-        </resizable-textarea>
+        <textarea v-model="content" class="content form-control{{ $errors->has('content') ? ' is-invalid' : '' }}"
+              name="content" cols="30" rows="10"
+              autofocus>{{ old('content') }}</textarea>
     </div>
 
     @include('posts._partials.embed')
