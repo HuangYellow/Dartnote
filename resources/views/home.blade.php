@@ -1,5 +1,16 @@
 @extends('layouts.app')
 
+@section('style')
+    <style>
+        .outline-0 {
+            outline: 0;
+        }
+        .resize-none {
+            resize: none;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -15,9 +26,11 @@
                                 </label>
 
                                 <div class="col-md-11">
-                                    <textarea v-model="content" class="content form-control{{ $errors->has('content') ? ' is-invalid' : '' }}"
-                                                  name="content" cols="30" rows="2"
-                                                  autofocus>{{ old('content') }}</textarea>
+                                    <resizable-textarea>
+                                        <textarea v-model="content" class="content form-control{{ $errors->has('content') ? ' is-invalid' : '' }} resize-none outline-0"
+                                                      name="content" rows="2" placeholder="{{ __('What does you think?') }}"
+                                                      autofocus>{{ old('content') }}</textarea>
+                                    </resizable-textarea>
 
                                     @if ($errors->has('content'))
                                         <span class="invalid-feedback">
@@ -44,7 +57,7 @@
                                 <div class="col-md-1"></div>
                                 <div class="col-md-11">
                                     <button type="submit" class="btn btn-primary float-right">
-                                        Create
+                                        @lang('Create Post')
                                     </button>
                                 </div>
                             </div>
@@ -58,11 +71,33 @@
 
 @push('push_scripts')
     <script>
+        Vue.component('resizable-textarea', {
+            methods: {
+                resizeTextarea (event) {
+                    event.target.style.height = 'auto'
+                    event.target.style.height = (event.target.scrollHeight) + 'px'
+                },
+            },
+            mounted () {
+                this.$nextTick(() => {
+                    this.$el.setAttribute('style', 'height:' + (this.$el.scrollHeight) + 'px;overflow-y:hidden;')
+                });
+
+                this.$el.addEventListener('input', this.resizeTextarea);
+            },
+            beforeDestroy () {
+                this.$el.removeEventListener('input', this.resizeTextarea);
+            },
+            render () {
+                return this.$slots.default[0];
+            },
+        });
+
         var app = new Vue({
             el: "#app",
             data: {
                 content : ''
-            }
+            },
         });
 
         $(".content").keyup(function () {

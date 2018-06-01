@@ -4,7 +4,9 @@
     <div class="container">
         <div class="row mt-3">
             <div class="mx-auto">
-                <h3>achievements</h3>
+                <h3>
+                    @lang('Achievements')
+                </h3>
                 <ol>
                     @foreach(\App\Achievement::all() as $achievement)
                         @if (auth()->user()->experience >= $achievement->experience)

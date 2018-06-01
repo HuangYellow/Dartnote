@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Auth\SessionGuard;
@@ -27,7 +28,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         SessionGuard::macro('nickname', function() {
-            return auth()->user()->nickname;
+            if (Auth::guest()) {
+                return;
+            }
+
+            return Auth::user()->nickname;
         });
     }
 }

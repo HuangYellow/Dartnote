@@ -2,18 +2,20 @@
     @csrf
 
     <div class="form-group">
-        <textarea v-model="content" class="content form-control{{ $errors->has('content') ? ' is-invalid' : '' }}"
+        <resizable-textarea>
+            <textarea v-model="content" class="content form-control{{ $errors->has('content') ? ' is-invalid' : '' }}"
                   name="content" cols="30" rows="10"
                   autofocus>{{ old('content') }}</textarea>
+        </resizable-textarea>
     </div>
 
     @include('posts._partials.embed')
 
     @include('posts._partials.embed-fields')
 
-    <div class="modal-footer">
-        <button id="create-modal-btn" type="button" class="btn btn-primary">Create</button>
-    </div>
+    <button id="create-modal-btn" type="button" class="btn btn-primary float-right">
+        @lang('Create Post')
+    </button>
 </form>
 
 @push('push_scripts')

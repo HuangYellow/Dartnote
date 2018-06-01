@@ -15,8 +15,10 @@
                     @csrf
                     @method('put')
                     <div class="mx-auto">
-                        <textarea name="bio" id="bio" cols="30" rows="10">{{ old('bio', $user->bio) }}</textarea>
-                        <button class="btn btn-primary">update</button>
+                        <textarea class="content form-control" name="bio" id="bio" cols="30" rows="10">{{ old('bio', $user->bio) }}</textarea>
+                        <button class="mt-2 btn btn-primary float-right">
+                            @lang('Update bio')
+                        </button>
                     </div>
                 </form>
             </div>
