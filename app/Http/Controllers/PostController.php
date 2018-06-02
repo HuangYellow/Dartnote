@@ -66,6 +66,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+
         auth()->user()->increment('experience', config('exp.post.destroy'));
 
         return redirect()->route('posts.index');

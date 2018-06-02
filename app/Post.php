@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Cartalyst\Tags\TaggableTrait;
 use Cartalyst\Tags\TaggableInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
 class Post extends Model implements TaggableInterface
 {
-    use SoftDeletes, TaggableTrait;
+    use SoftDeletes, TaggableTrait, CanBeLiked;
 
     protected $table = 'posts';
 

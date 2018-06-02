@@ -32,3 +32,4 @@ Route::match(['PUT','PATCH'], '{user}', 'UserController@update')->name('users.up
 Route::get('{user}', 'UserController@show')->name('users.show');
 
 Route::post('api/follow', 'Api\Follow');
+Route::post('api/like', 'Api\Like');

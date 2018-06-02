@@ -48,8 +48,15 @@
         @endif
 
         <span class="float-left offset-1 mt-4">
-            50 likes,
-            50 comments
+            <a href="javascript:void(0);" data-id="{{ $post->id }}" class="like" style="text-decoration: none;">
+                @if (auth()->user()->hasLiked($post->id, \App\Post::class))
+                    @lang("Unlike")
+                @else
+                    @lang("Like")
+                @endif
+                &nbsp;(<span>{{ $post->likers->count() }}</span>)
+            </a>
+            ．留言 (50)
         </span>
 
         <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary float-right mt-3">

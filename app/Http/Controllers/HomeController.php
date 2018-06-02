@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         $followings = auth()->user()->followings()->pluck('id')->toArray();
 
-        $posts = Post::whereIn('user_id', $followings)->with('user')->latest()->paginate(12);
+        $posts = Post::whereIn('user_id', $followings)->with('user.likes')->with('likers')->latest()->paginate(12);
 
         return view('home', compact('posts'));
     }

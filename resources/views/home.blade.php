@@ -114,6 +114,30 @@
             },
         });
 
+        $(".like").on('click', function(e) {
+            let $this = $(this);
+            let id = $this.data('id');
+
+            axios.post('/api/like', {
+                id: id
+            })
+                .then(function (response) {
+                    let that = $this;
+                    let count = parseInt(that.find('span').text());
+                    let status = response.data.status;
+                    if (status === 'like') {
+                        that.html("{{ __('Unlike') }}(<span>"+ (count + 1) +"</span>)");
+                    }
+
+                    if (status === 'unlike') {
+                        that.html("{{ __('Like') }}(<span>"+ (count - 1) +"</span>)");
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+
         $(".content").keyup(function () {
             let val = $(this).val();
             if (!val.length) {
