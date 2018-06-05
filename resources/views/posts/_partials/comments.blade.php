@@ -17,7 +17,7 @@
 
         <div class="row">
             <p class="col-md-11 offset-1" class="card-text">
-                {{ $comment->description }}
+                {!! $PostPresenter->content($comment->description) !!}
             </p>
         </div>
     </div>

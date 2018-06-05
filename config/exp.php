@@ -6,6 +6,10 @@ return [
         'create' => 5,
 
         'destroy' => -5
+    ],
+
+    'comment' => [
+        'create' => 1
     ]
 
 ];

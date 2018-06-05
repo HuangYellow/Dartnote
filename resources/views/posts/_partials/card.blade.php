@@ -49,11 +49,11 @@
 
         <span class="float-left offset-1 mt-4">
             <a href="javascript:void(0);" data-id="{{ $post->id }}" class="like" style="text-decoration: none;">
-                @lang($post->auth_like ? "Unlike" : "Like")&nbsp;(<span>{{ $post->likers_count }}</span>)
+                @lang($post->auth_like ? "Unlike" : "Like")&nbsp;(<span>{{ $post->likers->count() }}</span>)
             </a>
             ．
             <a href="{{ route('posts.show', $post->id) }}">
-                @lang('Comments')&nbsp;(<span>{{ $post->comments_count }}</span>)
+                @lang('Comments')&nbsp;(<span>{{ $post->comments->count() }}</span>)
             </a>
         </span>
 

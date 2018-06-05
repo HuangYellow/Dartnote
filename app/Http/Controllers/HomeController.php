@@ -24,9 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::whereIn('user_id', auth()->user()->followings()->pluck('id')->toArray())
-            ->with('comments.user')
+        $posts = Post::whereIn('user_id', auth()->user()->followings->pluck('id')->toArray())
             ->with('user')
+            ->with('comments')
             ->with('likers')
             ->with('auth_like')
             ->latest()->paginate(12);

@@ -29,6 +29,19 @@
                     </div>
                 </div>
 
+                @include('posts._partials.embed-fields')
+
+                <div class="preview form-group row hidden">
+                    <div class="col-md-8 offset-1">
+                        <div class="card">
+                            <img class="preview_image card-img-top" src="#" alt="no image" style="max-width: 492px;max-height: 256px;">
+                            <div class="card-body">
+                                <p class="preview_body card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group row mb-0">
                     <div class="col-md-1"></div>
                     <div class="col-md-11">
