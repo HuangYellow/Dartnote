@@ -31,13 +31,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // Changing get key, via nickname.
+    public function getRouteKeyName()
+    {
+        return 'nickname';
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
 
-    public function getRouteKeyName()
+    public function activities()
     {
-        return 'nickname';
+        return $this->hasMany(Activity::class);
     }
 }
