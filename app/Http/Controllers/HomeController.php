@@ -24,9 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $followings = auth()->user()->followings()->pluck('id')->toArray();
-
-        $posts = Post::whereIn('user_id', $followings)->with('user.likes')->with('likers')->latest()->paginate(12);
+        $posts = Post::whereIn('user_id', auth()->user()->followings()->pluck('id')->toArray())
+            ->with('comments.user')
+            ->with('user')
+            ->with('likers')
+            ->with('auth_like')
+            ->latest()->paginate(12);
 
         return view('home', compact('posts'));
     }

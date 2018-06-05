@@ -10,7 +10,10 @@ class UserController extends Controller
 {
     public function show(User $user)
     {
-        $posts = Post::where('user_id', $user->id)->latest()->paginate(12);
+        $posts = Post::where('user_id', $user->id)
+            ->with('likers.user')
+            ->with('comments.user')
+            ->with('user.likes')->latest()->paginate(12);
 
         return view('users.show', compact('user', 'posts'));
     }

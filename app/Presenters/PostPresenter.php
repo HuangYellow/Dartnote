@@ -2,6 +2,8 @@
 
 namespace App\Presenters;
 
+use App\Post;
+
 class PostPresenter
 {
     private function regexUrls($content)
@@ -28,5 +30,10 @@ class PostPresenter
     public function escape($content)
     {
         return nl2br(e($content));
+    }
+
+    public function status($status)
+    {
+        return $status == Post::$private ? 'Private' : 'Public';
     }
 }

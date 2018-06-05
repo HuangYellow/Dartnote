@@ -20,5 +20,10 @@
   "Update bio": "更新個人簡歷",
   "What does you think?": "你在想什麼？",
   "Like": "讚",
-  "Unlike": "收回讚"
+  "Unlike": "收回讚",
+  "Public": "公開",
+  "Private": "私人",
+  "Comments": "留言",
+  "Create Comment": "建立留言",
+  "Create successful": "建立成功"
 }

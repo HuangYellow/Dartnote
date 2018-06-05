@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Comment;
 use App\Post;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -18,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'posts' => Post::class,
+            'comments' => Comment::class,
             'users' => User::class,
         ]);
     }

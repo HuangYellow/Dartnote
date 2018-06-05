@@ -10,7 +10,7 @@ use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
 class Post extends Model implements TaggableInterface
 {
-    use SoftDeletes, TaggableTrait, CanBeLiked;
+    use SoftDeletes, TaggableTrait, CanBeLiked, Status;
 
     protected $table = 'posts';
 
@@ -20,9 +20,24 @@ class Post extends Model implements TaggableInterface
         'options' => 'json',
     ];
 
+    protected $withCount = [
+        'likers',
+        'comments'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function auth_like()
+    {
+        return $this->likers()->where('user_id', auth()->id());
     }
 
     public function slugify()

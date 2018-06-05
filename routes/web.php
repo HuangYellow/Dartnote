@@ -24,6 +24,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('posts', 'PostController');
 
+Route::post('posts/{post}/comments', 'Post\CreateComment')->name('comments.store');
+
 Route::get('tags', 'Tag\Index')->name('tags.index');
 Route::get('tags/{tag}', 'Tag\Show')->name('tags.show');
 

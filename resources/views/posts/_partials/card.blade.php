@@ -10,7 +10,7 @@
             <div class="col-md-11 mt-2">
                 <span class="align-middle">
                     <a href="{{ route('users.show', $post->user->nickname) }}">{{ $post->user->nickname }}</a>
-                     ． {{ $post->created_at->diffForHumans() }}
+                     ．{{ $post->created_at->diffForHumans() }}．@lang($PostPresenter->status($post->status))
                 </span>
             </div>
         </div>
@@ -49,14 +49,12 @@
 
         <span class="float-left offset-1 mt-4">
             <a href="javascript:void(0);" data-id="{{ $post->id }}" class="like" style="text-decoration: none;">
-                @if (auth()->user()->hasLiked($post->id, \App\Post::class))
-                    @lang("Unlike")
-                @else
-                    @lang("Like")
-                @endif
-                &nbsp;(<span>{{ $post->likers->count() }}</span>)
+                @lang($post->auth_like ? "Unlike" : "Like")&nbsp;(<span>{{ $post->likers_count }}</span>)
             </a>
-            ．留言 (50)
+            ．
+            <a href="{{ route('posts.show', $post->id) }}">
+                @lang('Comments')&nbsp;(<span>{{ $post->comments_count }}</span>)
+            </a>
         </span>
 
         <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary float-right mt-3">

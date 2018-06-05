@@ -15,10 +15,10 @@
                             </label>
 
                             <div class="col-md-11">
-                <span class="align-middle">
-                    <a href="{{ route('users.show', $post->user->nickname) }}">{{ $post->user->nickname }}</a>
-                     ． {{ $post->created_at->diffForHumans() }}
-                </span>
+                                <span class="align-middle">
+                                    <a href="{{ route('users.show', $post->user->nickname) }}">{{ $post->user->nickname }}</a>
+                                     ． {{ $post->created_at->diffForHumans() }}
+                                </span>
                             </div>
                         </div>
 
@@ -57,5 +57,94 @@
                 </div>
             </div>
         </div>
+
+        <div class="row mt-3 justify-content-center">
+            @include('comments._partials.form')
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="infinite-scroll list-group">
+                    @foreach($comments as $comment)
+                        @include('posts._partials.comments')
+                    @endforeach
+
+                    {{ $comments->links() }}
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
+
+@push('push_scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+    <script>
+        Vue.component('resizable-textarea', {
+            methods: {
+                resizeTextarea (event) {
+                    event.target.style.height = 'auto'
+                    event.target.style.height = (event.target.scrollHeight) + 'px'
+                },
+            },
+            mounted () {
+                this.$nextTick(() => {
+                    this.$el.setAttribute('style', 'height:' + (this.$el.scrollHeight) + 'px;overflow-y:hidden;')
+                });
+
+                this.$el.addEventListener('input', this.resizeTextarea);
+            },
+            beforeDestroy () {
+                this.$el.removeEventListener('input', this.resizeTextarea);
+            },
+            render () {
+                return this.$slots.default[0];
+            },
+        });
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                content : ''
+            },
+        });
+
+        $(".like").on('click', function(e) {
+            let $this = $(this);
+            let id = $this.data('id');
+
+            axios.post('/api/like', {
+                id: id
+            })
+                .then(function (response) {
+                    let that = $this;
+                    let count = parseInt(that.find('span').text());
+                    let status = response.data.status;
+                    if (status === 'like') {
+                        that.html("{{ __('Unlike') }}(<span>"+ (count + 1) +"</span>)");
+                    }
+
+                    if (status === 'unlike') {
+                        that.html("{{ __('Like') }}(<span>"+ (count - 1) +"</span>)");
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+
+        $('ul.pagination').hide();
+
+        $(function() {
+            $('.infinite-scroll').jscroll({
+                autoTrigger: true,
+                loadingHtml: '<h1>Loading</h1>',
+                padding: 0,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.infinite-scroll',
+                callback: function() {
+                    $('ul.pagination').remove();
+                }
+            });
+        });
+    </script>
+@endpush
