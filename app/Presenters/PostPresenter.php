@@ -13,7 +13,7 @@ class PostPresenter
 
     private function regexTags($content)
     {
-        return preg_replace('/\s#([\w-]+)/u', '<a href="/tags/$1">#$1</a>', $content);
+        return preg_replace('/\s#([\w-]+)/u', '<a href="/tags/$1">#$1</a>&nbsp;', $content);
     }
 
     public function content($content)
