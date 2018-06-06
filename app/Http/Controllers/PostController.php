@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Post;
+use App\Services\PostService;
 
 class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only('store');
+        $this->middleware('auth')->only('store', 'edit', 'update', 'destroy');
     }
 
     public function index()
@@ -24,24 +25,11 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(PostRequest $request)
+    public function store(PostRequest $request, PostService $postService)
     {
         $attributes = $request->all();
 
-        $post = auth()->user()->posts()->create($attributes);
-        auth()->user()->increment('experience', config('exp.post.create'));
-
-        $matches = [];
-        if (! empty($attributes['content'])) {
-            preg_match_all("/(#\w+)/u", $attributes['content'], $matches);
-        }
-
-        if (! empty($matches)) {
-            $hashtagsArray = array_count_values($matches[0]);
-            $hashtags = array_keys($hashtagsArray);
-            $tags = preg_replace('/#([\w-]+)/u', '$1', $hashtags);
-            $post->slugify()->tag($tags);
-        }
+        $post = $postService->create($attributes);
 
         return redirect()->route('posts.show', $post->id);
     }

@@ -23,4 +23,9 @@ class Tag implements FetchesWhenResolved
 
         return preg_replace('/#([\w-]+)/u', '$1', $hashtags);
     }
+
+    public static function empty($tags)
+    {
+        return empty($tags);
+    }
 }

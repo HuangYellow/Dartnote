@@ -14,10 +14,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
+    @auth
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
                         <form id="create-form" method="POST" action="{{ route('posts.store') }}">
                             @csrf
 
@@ -29,8 +30,8 @@
                                 <div class="col-md-11">
                                     <resizable-textarea>
                                         <textarea v-model="content" class="content form-control{{ $errors->has('content') ? ' is-invalid' : '' }} resize-none outline-0"
-                                                      name="content" rows="2" placeholder="{{ __('What does you think?') }}"
-                                                      autofocus>{{ old('content') }}</textarea>
+                                                  name="content" rows="2" placeholder="{{ __('What does you think?') }}"
+                                                  autofocus>{{ old('content') }}</textarea>
                                     </resizable-textarea>
 
                                     @if ($errors->has('content'))
@@ -63,10 +64,11 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endauth
 
     <div class="row mt-3 justify-content-center">
         <div class="col-md-6">

@@ -8,15 +8,15 @@ use Prophecy\Exception\Doubler\MethodNotFoundException;
 
 class CommentService
 {
-    public function create(Model $model, $attributes, $column = 'description')
+    public function create(Model $model, $attributes)
     {
         $this->resolvedRelations($model);
 
         $comment = $model->comments()->create($attributes);
 
-        $tags = Tag::fetchesResolved($attributes[$column]);
+        $tags = Tag::fetchesResolved($attributes['description']);
 
-        empty($tags) ?: $comment->slugify()->tag($tags);
+        Tag::empty($tags) ?: $comment->slugify()->tag($tags);
 
         return $comment;
     }

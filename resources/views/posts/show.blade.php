@@ -58,9 +58,11 @@
             </div>
         </div>
 
-        <div class="row mt-3 justify-content-center">
-            @include('comments._partials.form')
-        </div>
+        @auth
+            <div class="row mt-3 justify-content-center">
+                @include('comments._partials.form')
+            </div>
+        @endauth
 
         <div class="row justify-content-center">
             <div class="col-md-6">
