@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Auth;
+use Gravatar;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Auth\SessionGuard;
@@ -33,6 +34,14 @@ class AuthServiceProvider extends ServiceProvider
             }
 
             return Auth::user()->nickname;
+        });
+
+        SessionGuard::macro('gavatar', function() {
+            if (Auth::guest()) {
+                return;
+            }
+
+            return Gravatar::src(Auth::user()->email);
         });
     }
 }
