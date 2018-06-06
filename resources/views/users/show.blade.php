@@ -14,12 +14,12 @@
             </div>
             <div class="row mt-3">
                 <div class="mx-auto">
-                    @if (auth()->id() == $user->id)
+                    @if(auth()->user()->can('users.update', $user))
                         <a class="btn btn-outline-primary" href="{{ route('users.edit', auth()->nickname()) }}">
                             @lang("Edit Profile")
                         </a>
                     @else
-                        <button id="follow" data-id="{{ $user->id }}" type="button" class="btn btn-{{ auth()->user()->isFollowing($user->id) ? 'outline-primary' : 'primary' }}" {{ $user->id == auth()->id() ? 'disabled': '' }}>
+                        <button id="follow" data-id="{{ $user->id }}" type="button" class="btn btn-{{ auth()->user()->isFollowing($user->id) ? 'outline-primary' : 'primary' }}">
                             @lang(auth()->user()->isFollowing($user->id) ? "Unfollow" : "Follow")
                         </button>
                     @endif

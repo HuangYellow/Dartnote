@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row mt-3 justify-content-center">
-                <form action="{{ route('users.update', auth()->nickname()) }}" method="post">
+                <form action="{{ route('users.update', $user->nickname) }}" method="post">
                     @csrf
                     @method('put')
                     <div class="mx-auto">
