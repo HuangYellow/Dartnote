@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @inject('PostPresenter', '\App\Presenters\PostPresenter')
+@inject('ContentPresent', '\App\Presenters\ContentPresent')
 
 @section('content')
     <div class="container">
@@ -24,7 +25,7 @@
 
                         <div class="row">
                             <p class="col-md-11 offset-1" class="card-text">
-                                {!! $PostPresenter->content($post->content) !!}
+                                {!! $ContentPresent->content($post->content) !!}
                             </p>
                         </div>
 

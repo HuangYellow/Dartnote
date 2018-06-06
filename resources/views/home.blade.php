@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @inject('PostPresenter', '\App\Presenters\PostPresenter')
+@inject('ContentPresent', '\App\Presenters\ContentPresent')
 
 @section('style')
     <style>

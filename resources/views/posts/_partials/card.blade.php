@@ -17,7 +17,7 @@
 
         <div class="row">
             <p class="col-md-11 offset-1" class="card-text">
-                {!! $PostPresenter->content($post->content) !!}
+                {!! $ContentPresent->content($post->content) !!}
             </p>
         </div>
 
