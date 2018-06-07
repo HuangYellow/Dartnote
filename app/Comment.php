@@ -6,10 +6,11 @@ use App\Foundations\Slugify;
 use Cartalyst\Tags\TaggableInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
 class Comment extends Model implements TaggableInterface
 {
-    use SoftDeletes, Status, Slugify;
+    use SoftDeletes, Status, Slugify, CanBeLiked;
 
     protected $table = 'comments';
 
@@ -27,5 +28,10 @@ class Comment extends Model implements TaggableInterface
     public function commentable()
     {
         return $this->morphTo();
+    }
+
+    public function auth_like()
+    {
+        return $this->likers()->where('user_id', auth()->id());
     }
 }
