@@ -31,10 +31,9 @@
 
                         @if (! empty($post->options['url']))
                             <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-11">
+                                <div class="col-md-11 offset-1">
                                     <div class="card" style="max-width: 506px">
-                                        <img class="preview_image card-img-top" src="{{ $post->options['image'] }}"
+                                        <img class="card-img-top" src="{{ $post->options['image'] }}"
                                              data-src="holder.js/200x250?theme=thumb"
                                              data-holder-rendered="true"
                                              style="max-width: 506px;max-height: 254px;"
@@ -42,10 +41,10 @@
 
                                         <div class="card-body">
                                             <div class="card-text">
-                                                <span class="preview_title" style="font-size: 16pt">
+                                                <span style="font-size: 16pt">
                                                     {{ str_limit($post->options['title'], 50) }}
                                                 </span>
-                                                <div class="preview_description">
+                                                <div>
                                                     {{ str_limit($post->options['description'], 100) }}
                                                 </div>
                                             </div>

@@ -191,7 +191,8 @@
         if (!val.length) {
             $(".preview").addClass("hidden");
             $(".preview_image").attr('src', '#');
-            $(".preview_body").text('');
+            $(".preview_title").text('');
+            $(".preview_description").text('');
             $("input[name='options[url]']").val('');
             $("input[name='options[title]']").val('');
             $("input[name='options[description]']").val('');
@@ -210,7 +211,8 @@
                 })
                     .then(function (response) {
                         $(".preview_image").attr('src', response.data.image);
-                        $(".preview_body").text(response.data.title);
+                        $(".preview_title").text(response.data.title);
+                        $(".preview_description").text(response.data.description.substring(0, 60));
                         $(".preview").removeClass("hidden");
 
                         $("input[name='options[url]']").val(response.data.url);
