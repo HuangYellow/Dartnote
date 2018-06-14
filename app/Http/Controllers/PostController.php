@@ -27,9 +27,7 @@ class PostController extends Controller
 
     public function store(PostRequest $request, PostService $postService)
     {
-        $attributes = $request->all();
-
-        $post = $postService->create($attributes);
+        $post = $postService->create($request->all());
 
         return redirect()->route('posts.show', $post->id);
     }

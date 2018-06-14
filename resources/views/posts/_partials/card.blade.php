@@ -1,13 +1,13 @@
-<div class="card" style="margin-bottom: 2px;">
+<div class="card mb-2">
     <div class="card-body">
         <div class="row">
-            <label for="content" class="col-md-1 col-form-label">
+            <label for="content" class="col-1 col-form-label">
                 <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75" style="width: 36px; height: 36px;"
                      src="{{ gavatar($post->user->email) }}"
                      data-holder-rendered="true">
             </label>
 
-            <div class="col-md-11 mt-2">
+            <div class="col-11 mt-2">
                 <span class="align-middle">
                     <a href="{{ route('users.show', $post->user->nickname) }}">{{ $post->user->nickname }}</a>
                      ．{{ $post->created_at->diffForHumans() }}．@lang($PostPresenter->status($post->status))
@@ -16,15 +16,15 @@
         </div>
 
         <div class="row">
-            <p class="col-md-11 offset-1" class="card-text">
+            <p class="col-11 offset-1" class="card-text">
                 {!! $ContentPresent->content($post->content) !!}
             </p>
         </div>
 
         @if (! empty($post->options['url']))
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-11">
+                <div class="col-1"></div>
+                <div class="col-11">
                     <div class="card" style="max-width: 506px">
                         <img class="preview_image card-img-top" src="{{ $post->options['image'] }}"
                              data-src="holder.js/200x250?theme=thumb"
