@@ -20,6 +20,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('oauth/facebook', 'OAuth\Facebook@redirectToProvider')->name('oauth.facebook');
+Route::get('oauth/facebook/callback', 'OAuth\Facebook@handleProviderCallback')->name('oauth.facebook.callback');
+Route::get('oauth/github', 'OAuth\Github@redirectToProvider')->name('oauth.github');
+Route::get('oauth/github/callback', 'OAuth\Github@handleProviderCallback')->name('oauth.github.callback');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('posts', 'PostController');
