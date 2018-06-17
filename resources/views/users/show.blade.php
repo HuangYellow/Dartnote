@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="mx-auto">
                     <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75" style="width: 150px; height: 150px;"
-                         src="{{ gavatar($user->email) }}"
+                         src="{{ gravatar($user->email) }}"
                          data-holder-rendered="true">
                 </div>
             </div>

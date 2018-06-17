@@ -2,26 +2,62 @@
 
 @section('content')
     <div class="container">
-        <div class="form-group">
-            <div class="row">
-                <div class="mx-auto">
-                    <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75" style="width: 150px; height: 150px;"
-                         src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1638c9b279a%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1638c9b279a%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.34375%22%20y%3D%2242.15%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                         data-holder-rendered="true">
+        @auth
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10 col-md-10 col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <span class="row justify-content-center">
+                                <img src="{{ gravatar($user->email) }}">
+                            </span>
+                            <span class="row justify-content-center">
+                                <a target="_blank" href="https://en.gravatar.com/">Powered by Gravatar</a>
+                            </span>
+
+
+                            <form id="create-form" method="POST" action="{{ route('users.update', $user->nickname) }}">
+                                @csrf
+                                @method('put')
+
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="bio">
+                                            @lang("Bio")
+                                        </label>
+                                        <textarea class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }} resize-none outline-0"
+                                                      id="bio" name="bio" rows="2" placeholder="{{ __('What does you think?') }}"
+                                                      autofocus>{{ old('bio', $user->bio) }}</textarea>
+
+                                        @if ($errors->has('bio'))
+                                            <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('bio') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="language">
+                                            @lang("Language")
+                                        </label>
+                                        <select class="custom-select" id="language" name="language">
+                                            <option value="zh_TW">@lang("Traditional Chinese")</option>
+                                            <option value="en">@lang("English")</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mb-0">
+                                    <div class="col-11 offset-1">
+                                        <button type="submit" class="btn btn-primary float-right">
+                                            @lang('Update bio')
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-3 justify-content-center">
-                <form action="{{ route('users.update', $user->nickname) }}" method="post">
-                    @csrf
-                    @method('put')
-                    <div class="mx-auto">
-                        <textarea class="content form-control" name="bio" id="bio" cols="30" rows="10">{{ old('bio', $user->bio) }}</textarea>
-                        <button class="mt-2 btn btn-primary float-right">
-                            @lang('Update bio')
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        @endauth
     </div>
 @endsection

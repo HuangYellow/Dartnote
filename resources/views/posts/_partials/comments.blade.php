@@ -3,7 +3,7 @@
         <div class="row">
             <label for="content" class="col-md-1 col-form-label">
                 <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75" style="width: 36px; height: 36px;"
-                     src="{{ gavatar($comment->user->email) }}"
+                     src="{{ gravatar($comment->user->email) }}"
                      data-holder-rendered="true">
             </label>
 

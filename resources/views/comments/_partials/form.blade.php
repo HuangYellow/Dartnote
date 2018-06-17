@@ -8,7 +8,7 @@
                     <label for="content" class="col-md-1 col-form-label text-md-right">
                         <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75"
                              style="width: 36px; height: 36px;"
-                             src="{{ auth()->gavatar() }}"
+                             src="{{ auth()->gravatar() }}"
                              data-holder-rendered="true">
                     </label>
 

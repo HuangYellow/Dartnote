@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
             return Auth::user()->nickname;
         });
 
-        SessionGuard::macro('gavatar', function() {
+        SessionGuard::macro('gravatar', function() {
             if (Auth::guest()) {
                 return;
             }

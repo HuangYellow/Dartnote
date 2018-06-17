@@ -1,4 +1,8 @@
 {
+  "Language": "語言",
+  "Traditional Chinese": "中文",
+  "English": "英文",
+  "Bio": "簡介",
   "Profile": "個人資料",
   "Edit Profile": "編輯個人資料",
   "Logout": "登出",

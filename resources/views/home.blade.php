@@ -14,7 +14,7 @@
 
                             <div class="form-group row">
                                 <label for="content" class="col-1 col-form-label text-right">
-                                    <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75" style="width: 36px; height: 36px;" src="{{ auth()->gavatar() }}" data-holder-rendered="true">
+                                    <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75" style="width: 36px; height: 36px;" src="{{ auth()->gravatar() }}" data-holder-rendered="true">
                                 </label>
 
                                 <div class="col-11">
