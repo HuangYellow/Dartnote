@@ -54,7 +54,9 @@
         <div class="col-6">
             <div class="infinite-scroll list-group">
                 @foreach($posts as $post)
-                    @include('posts._partials.card')
+                    @include('posts._partials.card', [
+                    'type' => 'post'
+                    ])
                 @endforeach
 
                 {{ $posts->links() }}

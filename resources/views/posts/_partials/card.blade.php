@@ -23,8 +23,7 @@
 
         @if (! empty($post->options['url']))
             <div class="row">
-                <div class="col-1"></div>
-                <div class="col-11">
+                <div class="col-11 offset-1">
                     <div class="card" style="max-width: 506px">
                         <img class="preview_image card-img-top" src="{{ $post->options['image'] }}"
                              data-src="holder.js/200x250?theme=thumb"
@@ -48,7 +47,7 @@
         @endif
 
         <span class="float-left offset-1 mt-4">
-            <a href="{{ auth()->guest() ? route('login') : 'javascript:void(0);' }}" data-id="{{ $post->id }}" class="like" style="text-decoration: none;">
+            <a href="{{ auth()->guest() ? route('login') : 'javascript:void(0);' }}" data-id="{{ $post->id }}" data-type="{{ $type }}" class="like" style="text-decoration: none;">
                 @lang($post->auth_like->isNotEmpty() ? "Unlike" : "Like")&nbsp;(<span>{{ $post->likers->count() }}</span>)
             </a>
             ．

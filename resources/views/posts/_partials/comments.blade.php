@@ -24,7 +24,7 @@
         @auth
             <span class="float-left offset-1 mt-4">
                 <a href="javascript:void(0);" data-id="{{ $comment->id }}" data-type="comment" class="like" style="text-decoration: none;">
-                    @lang($comment->auth_like->isNotEmpty() ? "Unlike" : "Like")&nbsp;(<span>{{ $comment->likers->count() }}</span>)
+                    @lang($comment->auth_like->isNotEmpty() ? "Unlike" : "Like")&nbsp;(<span>{{ $comment->likers_count }}</span>)
                 </a>
             </span>
         @endauth

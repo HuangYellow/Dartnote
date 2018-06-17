@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-12 col-sm-10 col-md-10 col-lg-6">
     <div class="card" style="margin-bottom: 2px;">
         <div class="card-body">
             <form method="POST" action="{{ route('comments.store', $post->id) }}">

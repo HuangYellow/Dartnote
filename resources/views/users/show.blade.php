@@ -32,11 +32,13 @@
             </div>
         </div>
 
-        <div class="form-group row justify-content-lg-center">
-            <div class="col-6">
+        <div class="form-group row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-10 col-lg-6">
                 <div class="infinite-scroll list-group">
                     @foreach($posts as $post)
-                        @include('posts._partials.card')
+                        @include('posts._partials.card', [
+                        'type' => 'post'
+                        ])
                     @endforeach
 
                     {{ $posts->links() }}
@@ -51,8 +53,10 @@
     <script>
         $("#follow").on('click', function(e) {
             let id = $(this).data('id');
+            let type = $(this).data('type');
             axios.post('/api/follow', {
-                id: id
+                id: id,
+                type: type
             })
                 .then(function (response) {
                     let status = response.data.status;
