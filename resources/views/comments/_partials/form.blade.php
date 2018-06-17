@@ -1,18 +1,10 @@
-<div class="col-12 col-sm-10 col-md-10 col-lg-6">
-    <div class="card" style="margin-bottom: 2px;">
+<div class="col-12">
+    <div class="card mb-4">
         <div class="card-body">
             <form method="POST" action="{{ route('comments.store', $post->id) }}">
                 @csrf
-
                 <div class="form-group row">
-                    <label for="content" class="col-md-1 col-form-label text-md-right">
-                        <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75"
-                             style="width: 36px; height: 36px;"
-                             src="{{ auth()->gravatar() }}"
-                             data-holder-rendered="true">
-                    </label>
-
-                    <div class="col-md-11">
+                    <div class="col-12">
                         <resizable-textarea>
                             <textarea
                                     class="content form-control{{ $errors->has('content') ? ' is-invalid' : '' }} resize-none outline-0"
@@ -34,7 +26,7 @@
                 @include('components.preview')
 
                 <div class="form-group row mb-0">
-                    <div class="col-md-11 offset-1">
+                    <div class="col-12">
                         <button type="submit" class="btn btn-primary float-right">
                             @lang('Create Comment')
                         </button>

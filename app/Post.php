@@ -10,7 +10,7 @@ use App\Foundations\Slugify;
 
 class Post extends Model implements TaggableInterface
 {
-    use SoftDeletes, Slugify, CanBeLiked, Status;
+    use SoftDeletes, Slugify, CanBeLiked, HasStatus;
 
     protected $table = 'posts';
 

@@ -7,7 +7,7 @@
                      data-holder-rendered="true">
             </label>
 
-            <div class="col-10 mt-2">
+            <div class="mt-2">
                 <span class="align-middle">
                     <a href="{{ route('users.show', $post->user->nickname) }}">{{ $post->user->nickname }}</a>
                      ．{{ $post->created_at->diffForHumans() }}．@lang($PostPresenter->status($post->status))
@@ -55,16 +55,17 @@
                 </a>
             </div>
             <div class="col-4 justify-content-center">
-                <a href="{{ route('posts.show', $post->id) }}">
-                    <i class="far fa-comment fa-lg"></i>
-                    <span class="pl-1" style="font-size: 1.33333em">{{ $post->comments_count }}</span>
-                </a>
+                <i class="far fa-comment fa-lg"></i>
+                <span class="pl-1" style="font-size: 1.33333em">{{ $post->comments_count }}</span>
             </div>
-            <div class="col-4 justify-content-center">
-                <a href="{{ route('posts.show', $post->id) }}" class="float-right mt-1">
-                    <i class="fas fa-ellipsis-h fa-lg"></i>
-                </a>
-            </div>
+
+            @if(isset($readmore))
+                <div class="col-4 justify-content-center">
+                    <a href="{{ route('posts.show', $post->id) }}" class="float-right mt-1">
+                        <i class="fas fa-ellipsis-h fa-lg"></i>
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 </div>

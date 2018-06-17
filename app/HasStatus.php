@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-trait Status
+trait HasStatus
 {
     public static $private = 0;
 

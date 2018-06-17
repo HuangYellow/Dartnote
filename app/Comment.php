@@ -10,7 +10,7 @@ use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
 class Comment extends Model implements TaggableInterface
 {
-    use SoftDeletes, Status, Slugify, CanBeLiked;
+    use SoftDeletes, HasStatus, Slugify, CanBeLiked;
 
     protected $table = 'comments';
 

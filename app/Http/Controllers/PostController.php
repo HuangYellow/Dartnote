@@ -27,6 +27,11 @@ class PostController extends Controller
 
     public function store(PostRequest $request, PostService $postService)
     {
+        if ($request->exists('private')) {
+            $request->request->remove('private');
+            $request->request->set('status', Post::$private);
+        }
+
         $post = $postService->create($request->all());
 
         return redirect()->route('posts.show', $post->id);
@@ -46,11 +51,20 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        $withPost = Post::whereId($post->id)
+            ->with('user')
+            ->withCount('likers')
+            ->withCount('comments')
+            ->firstOrFail();
+
         $comments = $post->comments()
-            ->with('user')->withCount('likers')
+            ->with('user')
+            ->withCount('likers')
             ->latest()->paginate(12);
 
-        return view('posts.show', compact('post', 'comments'));
+        return view('posts.show')
+            ->with('post', $withPost)
+            ->with('comments', $comments);
     }
 
     public function destroy(Post $post)

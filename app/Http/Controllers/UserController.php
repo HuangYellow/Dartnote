@@ -11,8 +11,8 @@ class UserController extends Controller
     public function show(User $user)
     {
         $posts = Post::where('user_id', $user->id)
-            ->with('likers')
-            ->with('comments')
+            ->withCount('likers')
+            ->withCount('comments')
             ->with('user')
             ->with('auth_like')
             ->latest()->paginate(12);

@@ -33,7 +33,13 @@
                             @include('posts._partials.embed-fields')
 
                             <div class="form-group row mb-0">
-                                <div class="col-12">
+                                <div class="col-4">
+                                    <div class="form-check">
+                                        <input name="private" type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">@lang('Private')</label>
+                                    </div>
+                                </div>
+                                <div class="col-8">
                                     <button type="submit" class="btn btn-primary float-right">
                                         @lang('Create Post')
                                     </button>
@@ -51,7 +57,8 @@
             <div class="infinite-scroll list-group">
                 @foreach($posts as $post)
                     @include('posts._partials.card', [
-                    'type' => 'post'
+                    'type' => 'post',
+                    'readmore' => true
                     ])
                 @endforeach
 
