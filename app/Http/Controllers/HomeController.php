@@ -26,8 +26,8 @@ class HomeController extends Controller
     {
         $posts = Post::whereIn('user_id', auth()->user()->followings->pluck('id')->toArray())
             ->with('user')
-            ->with('comments')
-            ->with('likers')
+            ->withCount('comments')
+            ->withCount('likers')
             ->with('auth_like')
             ->latest()->paginate(12);
 

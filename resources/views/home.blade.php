@@ -6,7 +6,7 @@
 <div class="container">
     @auth
         <div class="row justify-content-center">
-            <div class="col-6">
+            <div class="col-12 col-sm-10 col-md-10 col-lg-6">
                 <div class="card">
                     <div class="card-body">
                         <form id="create-form" method="POST" action="{{ route('posts.store') }}">
@@ -51,7 +51,7 @@
     @endauth
 
     <div class="row mt-3 justify-content-center">
-        <div class="col-6">
+        <div class="col-12 col-sm-10 col-md-10 col-lg-6">
             <div class="infinite-scroll list-group">
                 @foreach($posts as $post)
                     @include('posts._partials.card', [
