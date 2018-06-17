@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <style>
         .hidden {
@@ -159,11 +160,11 @@
                 let count = parseInt(that.find('span').text());
                 let status = response.data.status;
                 if (status === 'like') {
-                    that.html("{{ __('Unlike') }}(<span>"+ (count + 1) +"</span>)");
+                    that.html("<i class=\"text-danger fas fa-heart fa-lg swatch-red\"></i> <span style='font-size: 1.33333em'>"+ (count + 1) +"</span>");
                 }
 
                 if (status === 'unlike') {
-                    that.html("{{ __('Like') }}(<span>"+ (count - 1) +"</span>)");
+                    that.html("<i class=\"far fa-heart fa-lg\"></i> <span style='font-size: 1.33333em'>"+ (count - 1) +"</span>");
                 }
             })
             .catch(function (error) {

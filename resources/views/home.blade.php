@@ -13,11 +13,7 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="content" class="col-1 col-form-label text-right">
-                                    <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75" style="width: 36px; height: 36px;" src="{{ auth()->gravatar() }}" data-holder-rendered="true">
-                                </label>
-
-                                <div class="col-11">
+                                <div class="col-12">
                                     <resizable-textarea>
                                         <textarea v-model="content" class="content form-control{{ $errors->has('content') ? ' is-invalid' : '' }} resize-none outline-0"
                                                   name="content" rows="2" placeholder="{{ __('What does you think?') }}"
@@ -37,7 +33,7 @@
                             @include('posts._partials.embed-fields')
 
                             <div class="form-group row mb-0">
-                                <div class="col-11 offset-1">
+                                <div class="col-12">
                                     <button type="submit" class="btn btn-primary float-right">
                                         @lang('Create Post')
                                     </button>

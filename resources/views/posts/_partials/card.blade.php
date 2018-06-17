@@ -1,13 +1,13 @@
 <div class="card mb-2">
     <div class="card-body">
-        <div class="row">
-            <label for="content" class="col-1 col-form-label">
+        <div class="row mb-1">
+            <label for="content" class="col-2 col-form-label">
                 <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75" style="width: 36px; height: 36px;"
                      src="{{ gravatar($post->user->email) }}"
                      data-holder-rendered="true">
             </label>
 
-            <div class="col-11 mt-2">
+            <div class="col-10 mt-2">
                 <span class="align-middle">
                     <a href="{{ route('users.show', $post->user->nickname) }}">{{ $post->user->nickname }}</a>
                      ．{{ $post->created_at->diffForHumans() }}．@lang($PostPresenter->status($post->status))
@@ -16,14 +16,14 @@
         </div>
 
         <div class="row">
-            <p class="col-11 offset-1" class="card-text">
+            <p class="col-12" class="card-text">
                 {!! $ContentPresent->content($post->content) !!}
             </p>
         </div>
 
         @if (! empty($post->options['url']))
             <div class="row">
-                <div class="col-11 offset-1">
+                <div class="col-12">
                     <a href="{{ $post->options['url'] }}" target="_blank" style="text-decoration: none !important;color: #212529">
                         <div class="card" style="max-width: 506px">
                             <img class="preview_image card-img-top" src="{{ $post->options['image'] }}"
@@ -47,19 +47,24 @@
                 </div>
             </div>
         @endif
-
-        <span class="float-left offset-1 mt-4">
-            <a href="{{ auth()->guest() ? route('login') : 'javascript:void(0);' }}" data-id="{{ $post->id }}" data-type="{{ $type }}" class="like" style="text-decoration: none;">
-                @lang($post->auth_like->isNotEmpty() ? "Unlike" : "Like")&nbsp;(<span>{{ $post->likers_count }}</span>)
-            </a>
-            ．
-            <a href="{{ route('posts.show', $post->id) }}">
-                @lang('Comments')&nbsp;(<span>{{ $post->comments_count }}</span>)
-            </a>
-        </span>
-
-        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary float-right mt-3">
-            @lang("Read more")
-        </a>
+        <div class="mt-3 row">
+            <div class="col-4 justify-content-start">
+                <a href="{{ auth()->guest() ? route('login') : 'javascript:void(0);' }}" data-id="{{ $post->id }}" data-type="{{ $type }}" class="like" style="text-decoration: none;">
+                    <i class="{{ $post->auth_like->isNotEmpty() ? 'text-danger fas' : 'far' }} fa-heart fa-lg"></i>
+                    <span class="pl-1" style="font-size: 1.33333em">{{ $post->likers_count }}</span>
+                </a>
+            </div>
+            <div class="col-4 justify-content-center">
+                <a href="{{ route('posts.show', $post->id) }}">
+                    <i class="far fa-comment fa-lg"></i>
+                    <span class="pl-1" style="font-size: 1.33333em">{{ $post->comments_count }}</span>
+                </a>
+            </div>
+            <div class="col-4 justify-content-center">
+                <a href="{{ route('posts.show', $post->id) }}" class="float-right mt-1">
+                    <i class="fas fa-ellipsis-h fa-lg"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
