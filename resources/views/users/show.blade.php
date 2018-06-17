@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group row justify-content-lg-center">
-            <div class="col-md-6">
+            <div class="col-6">
                 <div class="infinite-scroll list-group">
                     @foreach($posts as $post)
                         @include('posts._partials.card')
