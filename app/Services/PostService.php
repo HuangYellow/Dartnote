@@ -15,6 +15,9 @@ class PostService
         Tag::empty($tags)?:$post->slugify()->tag($tags);
 
         auth()->user()->increment('experience', config('exp.post.create'));
+        auth()->user()->increment('coins', config('coin.post.create'));
+
+        //add activity.
 
         return $post;
     }

@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="row mt-3 justify-content-center">
-                <div class="mx-auto">
+                <div class="mx-auto col-12 text-center">
                     {{ $user->bio }}
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="infinite-scroll list-group">
                     @foreach($posts as $post)
                         @include('posts._partials.card', [
-                        'type' => 'post'
+                            'type' => 'post'
                         ])
                     @endforeach
 
@@ -48,15 +48,13 @@
     </div>
 @endsection
 
-@push('push_scripts')
+@push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
     <script>
         $("#follow").on('click', function(e) {
             let id = $(this).data('id');
-            let type = $(this).data('type');
             axios.post('/api/follow', {
                 id: id,
-                type: type
             })
                 .then(function (response) {
                     let status = response.data.status;

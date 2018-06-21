@@ -55,8 +55,10 @@
                 </a>
             </div>
             <div class="col-4 justify-content-center">
-                <i class="far fa-comment fa-lg"></i>
-                <span class="pl-1" style="font-size: 1.33333em">{{ $post->comments_count }}</span>
+                <a href="{{ route('posts.show', $post->id) }}" style="text-decoration: none;">
+                    <i class="far fa-comment fa-lg"></i>
+                    <span class="pl-1" style="font-size: 1.33333em">{{ $post->comments_count }}</span>
+                </a>
             </div>
 
             @if(isset($readmore))
