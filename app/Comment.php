@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Eloquent\Concerns\HasStatus;
 use App\Foundations\Slugify;
 use Cartalyst\Tags\TaggableInterface;
 use Illuminate\Database\Eloquent\Model;

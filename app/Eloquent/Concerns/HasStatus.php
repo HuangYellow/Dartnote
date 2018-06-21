@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Eloquent\Concerns;
 
 trait HasStatus
 {

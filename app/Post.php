@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Eloquent\Concerns\HasStatus;
 use Illuminate\Database\Eloquent\Model;
 use Cartalyst\Tags\TaggableInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
