@@ -11,7 +11,7 @@ class ContentPresent
 
     private function regexTags($content)
     {
-        return preg_replace('/#([\w-]+)/u', '<a href="/tags/$1">#$1</a>&nbsp;', $content);
+        return preg_replace('/\s#([\w-]+)/u', '<a href="/tags/$1">#$1</a>&nbsp;', $content);
     }
 
     public function content($content)
