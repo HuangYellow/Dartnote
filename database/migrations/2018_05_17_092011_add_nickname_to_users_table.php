@@ -14,7 +14,8 @@ class AddNicknameToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('nickname')->unique()->after('name');
+            // sqlite does not support alter change column type.
+            $table->string('nickname')->unique()->after('name')->nullable();
         });
     }
 
