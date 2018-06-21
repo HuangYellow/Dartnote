@@ -76,15 +76,19 @@
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('users.show', auth()->user()->nickname) }}">
-                                    @lang('Profile')
+                                    <i class="fas fa-user"></i> @lang('Profile')
                                 </a>
                                 <a class="dropdown-item" href="{{ route('users.achievements', auth()->user()->nickname) }}">
-                                    @lang('Achievements')
+                                    <i class="fas fa-trophy"></i> @lang('Achievements')
                                 </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cog"></i> @lang('Settings')
+                                </a>
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    @lang('Logout')
+                                    <i class="fas fa-sign-out-alt"></i> @lang('Logout')
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
